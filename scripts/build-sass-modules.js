@@ -20,11 +20,11 @@ Object.entries(allColorScales).forEach(([colorScaleName, scale]) => {
   const isOverlay = ['whiteA', 'blackA'].includes(colorScaleName);
 
   const scaleAssCssProperties = Object.entries(scale)
-    .map(([name, value]) => `$${toKebabCase(name)}: ${value};`)
+    .map(([name, value]) => `  ${toKebabCase(name)}: ${value},`)
     .join('\n');
 
   const kebabCaseScaleName = toKebabCase(colorScaleName);
-  const scaleAsCssFile = `${scaleAssCssProperties}`;
+  const scaleAsCssFile = `$${kebabCaseScaleName}: (\n${scaleAssCssProperties.replace(/,*$/, '')}\n);`;
   let fileName = `${kebabCaseScaleName}.scss`;
 
   if (isOverlay) {
