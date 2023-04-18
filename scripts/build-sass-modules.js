@@ -23,7 +23,8 @@ Object.entries(allColorScales).forEach(([colorScaleName, scale]) => {
     .map(([name, value]) => `  ${toKebabCase(name)}: ${value},`)
     .join('\n');
 
-  const kebabCaseScaleName = toKebabCase(colorScaleName);
+  const kebabCaseScaleName = toKebabCase(colorScaleName).replace('-dark', '');
+
   const scaleAsCssFile = `$${kebabCaseScaleName}: (\n${scaleAssCssProperties.replace(/,*$/, '')}\n);`;
   let fileName = `${kebabCaseScaleName}.scss`;
 
