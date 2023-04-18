@@ -8,12 +8,15 @@ const forward = []
 
 Object.entries(allColorScales).forEach(([colorScaleName, scale]) => {
   const scaleAssCssProperties = Object.entries(scale)
-    .map(([name, value]) => `  ${toKebabCase(name)}: ${value},`)
+    .map(([name, value]) => `$${toKebabCase(name)}: ${value};`)
     .join('\n');
 
   const kebabCaseScaleName = toKebabCase(colorScaleName);
 
-  const scaleAsCssFile = `$${kebabCaseScaleName}: (\n${scaleAssCssProperties}\n);`;
+  // const scaleAsCssFile = `$${kebabCaseScaleName}: (\n${scaleAssCssProperties}\n);`;
+  const scaleAsCssFile = `${scaleAssCssProperties}`;
+
+  console.log('scaleAsCssFile', scaleAsCssFile)
 
   // Add to @forward
   forward.push(kebabCaseScaleName);
